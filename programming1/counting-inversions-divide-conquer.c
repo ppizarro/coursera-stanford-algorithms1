@@ -3,20 +3,20 @@
 
 #define MAX_INTS 100000
 
-static unsigned int integers[MAX_INTS];
+static int integers[MAX_INTS];
 
-static unsigned int array_tmp[MAX_INTS];
+static int array_tmp[MAX_INTS];
 
 int load_integers(const char * filename)
 {
     FILE *fp = NULL;
-    unsigned int value;
+    int value;
     int i = -1;
 
     if ((fp = fopen (filename, "r")) == NULL)
         return -1;
 
-    while (fscanf (fp, "%u", &value) && !feof(fp) && ++i < MAX_INTS ) 
+    while (fscanf (fp, "%i", &value) && !feof(fp) && ++i < MAX_INTS ) 
         integers[i] = value;
 
     fclose (fp);
@@ -53,7 +53,7 @@ long long merge_and_split_count_inversions(int* left_sort,  int left_length,
         }
     }
     
-    memcpy(array_sort, array_tmp, length * sizeof(unsigned int));
+    memcpy(array_sort, array_tmp, length * sizeof(int));
     return inversions;
 }
 

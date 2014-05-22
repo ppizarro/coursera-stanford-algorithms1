@@ -24,7 +24,10 @@ Resposta: (1)*10^n + (4)*10^n/2 + (2)
 
 Conclusão: com esse algoritmo faremos 3 multiplicações de (n/2) digitos
 
+=====================================================
+
 - Merge sort: dividir para conquistar algoritmo - 6nlog(2)n + 6n - very flat quickly
+
  log(2): #d times you divide by 2 until you get 1
 
  Proof of claim: At each level j=0,1,2,..., log(2)n, there are 2^j subproblems, each of size n/(2^j)
@@ -78,7 +81,7 @@ O(n) = n^2 (strassen)
 ==========
 algorithm for closest pair problem
 
-O(n) = nlog(n)
+O(n) = n log n
 
 ============
 Recurrence Format: Master Method or Master Theorem
@@ -94,7 +97,17 @@ Recurrence Format: Master Method or Master Theorem
 
 Master Method
 
-	1) O(n^d * log n) if a = b^d (case 1)
-T(n) =	2) O(n^d)         if a < b^d (case 2)
-	3) O(n^log(b)a)   if a > b^d (case 3)
+	1) O(n^d * log n) if a = b^d (case 1) todos os levels tem o mesmo trabalho
+T(n) =	2) O(n^d)         if a < b^d (case 2) a cada level o trabalho diminui, quase todo o trabalho está na raíz
+	3) O(n^log(b)a)   if a > b^d (case 3) == O(a^log(b)n) a cada level o trabalho aumenta, quase todo o trabalho está nas folhas (a^log(b)n) # de folhas
 
+======================
+QuickSort
+
+O(n) = n log n (average - with random pivots)
+
+
+Minimum #levels: Θ(log(n))
+Maximum #levels: Θ(n)
+
+The best case is when the algorithm always picks the median as a pivot, in which case the recursion is essentially identical to that in MergeSort. In the worst case the min or the max is always chosen as the pivot, resulting in linear depth.

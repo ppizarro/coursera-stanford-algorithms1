@@ -28,14 +28,14 @@ inline void swap(int* array, int i, int j)
     array[i] = tmp;
 }
 
-int partition_first_pivo(int* array, int length)
+int partition_first_pivot(int* array, int length)
 {
-    int pivo = array[0];
+    int pivot = array[0];
     int i = 1;
     int j = 1;
 
     for (; j < length; j++) {
-        if (array[j] < pivo) {
+        if (array[j] < pivot) {
            swap(array, i, j);
            i++;
         }
@@ -50,7 +50,7 @@ long long quick_sort_and_count_comparisons(int* array, int length)
 
     int comparisons = length - 1;
 
-    int pos = partition_first_pivo(array, length);
+    int pos = partition_first_pivot(array, length);
 
     return comparisons + 
            quick_sort_and_count_comparisons(array, pos) +

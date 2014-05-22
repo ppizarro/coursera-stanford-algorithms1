@@ -28,14 +28,14 @@ inline void swap(int* array, int i, int j)
     array[i] = tmp;
 }
 
-int partition_first_pivo(int* array, int length)
+int partition_first_pivot(int* array, int length)
 {
-    int pivo = array[0];
+    int pivot = array[0];
     int i = 1;
     int j = 1;
 
     for (; j < length; j++) {
-        if (array[j] < pivo) {
+        if (array[j] < pivot) {
            swap(array, i, j);
            i++;
         }
@@ -44,7 +44,7 @@ int partition_first_pivo(int* array, int length)
     return i - 1;
 }
 
-inline int find_pivo_median_of_three(int* array, int length)
+inline int find_pivot_median_of_three(int* array, int length)
 {
     int first_pos  = 0;
     int middle_pos = length % 2 ? length / 2 : (length / 2 - 1);
@@ -81,11 +81,11 @@ long long quick_sort_and_count_comparisons(int* array, int length)
 {
     if (length <= 1) return 0;
 
-    int pivo = find_pivo_median_of_three (array, length);
+    int pivot = find_pivot_median_of_three (array, length);
 
-    swap(array, 0, pivo);
+    swap(array, 0, pivot);
 
-    int pos = partition_first_pivo (array, length);
+    int pos = partition_first_pivot (array, length);
 
     return length - 1 + 
            quick_sort_and_count_comparisons(array, pos) +

@@ -111,3 +111,122 @@ Minimum #levels: Θ(log(n))
 Maximum #levels: Θ(n)
 
 The best case is when the algorithm always picks the median as a pivot, in which case the recursion is essentially identical to that in MergeSort. In the worst case the min or the max is always chosen as the pivot, resulting in linear depth.
+
+========================
+Randomized Selection
+
+RSelect(Array A, length n, order statistics i) 
+
+Running time of RSelect <= 8 * c * n
+
+O(n) = n
+
+=========================
+Graphs and Minimum Cuts
+
+Graphs:
+- Vertices: aka nodes (v) [vertex]
+- Edges: pairs of vertices (E)
+    - Can be undirected (unordered pair)
+    - or directed (ordered pair) - aka arcs (arrows)
+
+Cuts of Graphs:
+- Definition: a cut of a graph (V,E) is a partition of V into two non-empty sets A and B.
+
+- Definition: the crossing edges of a cut (A,B) are those with:
+    - one endpoint in each of (A, B) [undirected]
+    - tail in A, head in B [directed]
+
+The Minimum Cut Problem:
+- Input: an undirected graph G = (V,E)
+- Goal: compute a cut with fewest number of crossing edges (a min cut). Parallel edges allowed.
+
+A Few Applications:
+- identify network bottlenecks / weaknesses
+- community detection in social networks
+- image segmentation
+
+n vertices => minimum #edges = n -1 and maximum #edges = n * (n - 1) / 2
+
+Sparse X Dense Graphs
+
+n = # of vertices
+m = # of edges
+
+==========================
+The Adjacency Matrix
+
+Vertices = 1, 2, 3, 4, ...
+A = n x n where Aij = 1 => Graph has an i-j edge
+
+Variants:
+- Aij = # of i-j edges (if parallel edges)
+- Aij = weight of i-j edge (if any)
+- Aij = +1 if i->j or -1 if i<-j
+
+==============================
+Random Contraction Algorithm
+
+P = 2 / (n*(n-1)) >= 1 / n^2 de escolher um edge cujo um dos vertices está no grupo A e o outro no grupo B.
+
+probability fail = 1 - 1/(n^2)
+
+Repeat N trials
+
+Probabilty[all N trials fail] <= (1 - 1/n^2)^N
+
+1 + x <= e^x
+
+Pr[all N trial fail] <= (e^(-1/n^2))^N
+
+So: if N=n^2, Pr[all fail] <= (e^(-1/n^2))^(n^2) = 1/e
+    if N=n^2 * ln(n), Pr[all fail] <= (1/e)^ln n = 1/n
+
+Running time: polynomial in n and m but slow (r(n²*m))
+But: can get big speedups [to roughly O(n²)] with more ideas.
+
+# of minimum cuts 
+
+[a tree with n vertices has (n - 1) minimum cuts]
+
+Question: what's the largest number of min cuts that a graph with n vertices can have?
+Answer: (n 2) = (n * (n - 1)) / 2
+
+Pr[output = (Ai,Bi)] >= (2 / n * (n -1)) = 1 / (n 2)
+
+========================================
+Graph Search
+
+Breadth-First Search - BFS
+- O(m + n) time using a queue (FIFO)
+- explore nodes in "layers"
+- can compute shortest paths
+- can compute connected components of an undirected graph.
+
+Depth-First Search - DFS
+- O(m + n) time using a stack (LIFO) or via recursion
+- explore aggressively like a maze, backtrack only when necessary.
+- compute topological ordering of directed acyclic graph
+- compute connected components in directed graphs
+
+connected componentes = the "pieces" of graph. Equivalence classes of relation u~v <=> E u-v path in G
+
+topologic ordering
+- sequence tasks while respecting all precedence constraints.
+- G has directed cycle => no topological ordering.
+- every directed acycle graph has a sink vertex.
+
+strongly connected components - SCC
+- SCC of a directed graph G are the equivalence classes of the relation
+u~v <=> E path u -> v and E path v -> u in G
+- kosaraju's Two-Pass Algorithm:
+ 1) Let Grev = G with all arcs reversed
+ 2) run DFS-Loop on Grev (goal: compute "magical ordering" of nodes) - let f(v)="finishing time" of each v e V.
+ 3) run DFS-Loop on G (goal: discover the SSCs one-by-one) - proceeding nodes in decreasing order of finishing times - SSCs = nodes with the same "leader"
+
+Web Graph:
+- vertices = web pages
+- directed edges = hyperlinks
+- Reference: [Broder et al www 2000]
+- Recommended reading: Easley + Kleinberg, "Networks, Crowds, Markets"
+

@@ -10,4 +10,4 @@ count-comparisons-median-of-three-pivot-quick-sort: count-comparisons-median-of-
 	gcc -Wall count-comparisons-median-of-three-pivot-quick-sort.c -o count-comparisons-median-of-three-pivot-quick-sort
 
 clean:
-	rm -rf *o count-comparisons-first-pivot-quick-sort count-comparisons-last-pivot-quick-sort count-comparisons-median-of-three-pivot-quick-sort
+	rm -rf *.o count-comparisons-first-pivot-quick-sort count-comparisons-last-pivot-quick-sort count-comparisons-median-of-three-pivot-quick-sort

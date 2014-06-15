@@ -179,10 +179,10 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    bzero (vertices_original, sizeof(vertices_original));
-    bzero (vertices_reversed, sizeof(vertices_reversed));
-    bzero (finishing_time, sizeof(finishing_time));
-    bzero (leaders, sizeof(leaders));
+    bzero (vertices_original, MAX_VERTICES * sizeof(Vertex*));
+    bzero (vertices_reversed, MAX_VERTICES * sizeof(Vertex*));
+    bzero (finishing_time, MAX_VERTICES * sizeof(int));
+    bzero (leaders, MAX_VERTICES * sizeof(int));
 
     if (load_arcs(argv[1]) < 0) {
         fprintf(stderr, "Error on reading intergers from file: %s\n", argv[1]);

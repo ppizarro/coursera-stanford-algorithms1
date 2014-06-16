@@ -230,3 +230,82 @@ Web Graph:
 - Reference: [Broder et al www 2000]
 - Recommended reading: Easley + Kleinberg, "Networks, Crowds, Markets"
 
+=============================================
+Dijkstra's Shortest-Path Algorithm
+
+- each edge has nonnegative length l
+- para aplicacoes com comprimento negativo, Dijkstra não funciona, seria melhor utilizar o Bellman Ford
+
+while X != V:
+
+Main loop cri'd
+- Among all edges (v,w) E E with v pertencente X, w não pertencente a X, pick the one that minimizes
+	A[v] + Lvw (Dijkstra's greedy criterion)
+	A[v] => already computed 	in earlier interation
+- Add w* to X
+- Set A[w*] = A[v*] + Lv*w*
+- Set B[w*] = B[v*] U (v*,w*)
+
+- Naive implementation => run-Time: O(nm)
+
+- Use data structure to get an algorithm speed-up.
+- It's the Heap structure
+
+- With Heaps => run-time: O(mlogn)
+
+===============================================
+Data Structures
+
+- Point: organize data so that it can be accessed
+- Examples: lists, stacks, queues, heaps, search trees, hash tables, bloom filters, union-find, etc.
+- Why so many? different data structures support different sets of operations => suitable for different type of tasks.
+- Rule of Thumb: choose the "minimal" data structure that supports all the operations that you need.
+
+==================================================
+Heap Data Structure
+
+- a container for objects that have keys. Ex.: employer records, network edges, events, etc.
+
+INSERT: add a new object to a heap. Running time: O(log n)
+
+EXTRACT-MIN: remove an object in heap with a minimum key value. . Running time: O(log n) [n = # of objects in the heap]
+
+Also: HEAPIFY (N batched Inserts in O(N) time ao inves de O(N log N))
+      DELETE  (O(log N) time)
+
+- Canonical use of heaps: fast way to do repeated minimum computations
+
+Example:
+
+SelectionSort: o(n*n) quadratic - repetitive scans
+
+HeadpSort:
+1) insert all n array elements into a heap
+2) Extract-Min to pluck at elements in sorted order
+RunningTime = 2*N heap operations = O(N log N) time
+=> optimal for a "comparison based" sorting algorithm]
+
+Application: Event Manager
+- "Priority Queue" - synonym for heap
+
+Application: Median Maintanence
+- two heaps => Hlow and Hhigh
+
+Application: Speeding Up Dijkstra
+
+Array Implementation:
+
+=> parent(i) = i/2 if i even, [i/2] if i odd (round down)
+=> children(i) = 2*i and 2*i+1
+
+Implementation Insert (given key k):
+- Step 1: stick K at the end of last level.
+- Step 2: Bubble-Up (sift-up/heapify-up) k until heap property is restored (i.e., key of k's parent is <= k).
+
+# of levels = log2 N (N = # of items in heap)
+
+Implementation of Extract-Min (Bubble-Down)
+- Step 1: delete root.
+- Step 2: move last leaf to be new root.
+- Step 3: interatively Bubble-Down until heap property has been restored. (always swap with smaller child!)
+

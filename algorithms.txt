@@ -309,3 +309,101 @@ Implementation of Extract-Min (Bubble-Down)
 - Step 2: move last leaf to be new root.
 - Step 3: interatively Bubble-Down until heap property has been restored. (always swap with smaller child!)
 
+=====================================================================
+Balanced Binary Search Tree
+
+Sorted Arrays:
+
+Operations		 					Running Time
+- Search			 				  O(logN)
+- Select (given order statistic i)      	        	  O(1)
+- Min/Max							  O(1)
+- Predecessor/Successor (given pointer to a key)		  O(1)
+- Rank (i.e., # of keys less than or equal to a given value)	  O(logN)
+- Output in sorted order                                          O(n)
+- Insert and Deletions						  O(n)
+
+Balanced Binary Search Tree = Sorted Arrays + Insert/Delete in O(logN) running time
+
+Operations		 					Running Time
+- Search			 				  O(logN)                                     => also supported by Hash table
+- Select (given order statistic i)      	        	  O(logN) => quite slower than sorted arrays
+- Min/Max							  O(logN) => quite slower than sorted arrays  => also supported by Heap
+- Predecessor/Successor (given pointer to a key)		  O(logN) => quite slower than sorted arrays
+- Rank (i.e., # of keys less than or equal to a given value)	  O(logN)
+- Output in sorted order                                          O(n)
+- Insert and Deletions						  O(logN) => faster than sorted arrays        => also supported by Heap, Hash table
+
+O(log N) - balanced binary tree => height = log N
+O(Height) - unbalanced binary tree
+
+Exactly one node per key
+Most basic version each node has:
+- left child pointer: all key below this node has lower keys
+- right child pointer: all key below this node has higher keys
+- parent pointer
+
+=============================================
+Red-Black Trees [see also AVL trees, splay trees (self-adjusting trees), B trees, B+ trees (databases)]
+1) each node red or black (bit information)
+2) root is black
+3) no two reds in a row [red node => only black childrens]
+4) every root-NULL path (unsuccessful search) has same number of black nodes
+
+- left and right rotations
+
+- Insertion in a Red-Black Tree:
+
+Idea for Insert/Delete: proceed as in a normal binary search tree, then recolor and/or perform rotations until invariants are restored;
+
+1) Insert X as usual - makes X a leaf
+2) Try coloring X red
+3) If X's parent Y is black, done
+4) else Y is red
+
+=================================================================================
+Hash Tables
+
+Prupose: maintain a (possibly evolving) set of stuff. (transactions, people + associated data, IP address, etc.)
+Insert: Add a new record
+Delete: delete existing record
+Lookup: check for a particular record
+
+Amazing guarantee => all operations in O(1) time! (constant time)
+
+Collision => birsthday paradox (23 people -> 50% collision / same birsthday)
+
+Solution #1: chaining
+Solution #2: open addressing (one only object per bucket) => linear or using two hash functions: position + step
+
+- performance depends on the choice of hash function!
+
+Quick-and-Dirty Hash Functions:
+"hash code" -> "compression function"
+
+N = # of buckets
+How to choose N?
+1) choose N to be a prime (within constant factor of # of objects in table)
+2) not too close to a power of 2
+3) not too close to a power of 10
+
+Load factor of a hash table: alpha
+
+alpha = # of objects in hash table / # of buckets in hash table
+
+Upshot #1: for good hit performance, need to control load
+Upshot #2: for good hit performance, need a good hash function i.e., spreads data evenly across buckets.
+
+Pathological Data in the Real World.
+
+Solutions:
+
+1) use a cryptographic hash function (e.q., SHA-2): infeasible to reverse engineer a pathological data set
+2) use randomization: design a Family H of hash functions such that, any data sets S, "almost all" functions hash spread S out "pretty evenly". Universal Hashing.
+
+======================================================================================
+Bloom Filters
+
+
+
+

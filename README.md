@@ -10,24 +10,24 @@
  1. Base case: T(n) <= a constant for all sufficiently small n.
  1. For all large n: T(n) <= aT(n/b) + O(n^d)
 
-	a = number of recursive calls (>=1)
-	b = input size shrinkage factor (>1)
-	d = exponent in running time of "Combine step" (>=0)
+	- a = number of recursive calls (>=1)
+	- b = input size shrinkage factor (>1)
+	- d = exponent in running time of "Combine step" (>=0)
 
 	a,b,d independent of n
 
 Master Method:
 
-	1. O(n^d * log n) if a = b^d (case 1) todos os levels tem o mesmo trabalho
-T(n) =	1. O(n^d)         if a < b^d (case 2) a cada level o trabalho diminui, quase todo o trabalho está na raíz
-	1. O(n^log(b)a)   if a > b^d (case 3) == O(a^log(b)n) a cada level o trabalho aumenta, quase todo o trabalho está nas folhas (a^log(b)n) # de folhas
+1. T(n) = O(n^d * log n) if a = b^d (case 1) todos os levels tem o mesmo trabalho
+1. T(n) = O(n^d)         if a < b^d (case 2) a cada level o trabalho diminui, quase todo o trabalho está na raíz
+1. T(n) = O(n^log(b)a)   if a > b^d (case 3) == O(a^log(b)n) a cada level o trabalho aumenta, quase todo o trabalho está nas folhas (a^log(b)n) # de folhas
 
 ### QuickSort
 
 O(n) = n log n (average - with random pivots)
 
-Minimum #levels: Θ(log(n))
-Maximum #levels: Θ(n)
+* Minimum #levels: Θ(log(n))
+* Maximum #levels: Θ(n)
 
 The best case is when the algorithm always picks the median as a pivot, in which case the recursion is essentially identical to that in MergeSort. In the worst case the min or the max is always chosen as the pivot, resulting in linear depth.
 
@@ -67,12 +67,13 @@ n vertices => minimum #edges = n -1 and maximum #edges = n * (n - 1) / 2
 
 Sparse X Dense Graphs
 
-n = # of vertices
-m = # of edges
+- n = # of vertices
+- m = # of edges
 
 ### The Adjacency Matrix
 
 Vertices = 1, 2, 3, 4, ...
+
 A = n x n where Aij = 1 => Graph has an i-j edge
 
 Variants:
@@ -95,9 +96,11 @@ Probabilty[all N trials fail] <= (1 - 1/n^2)^N
 Pr[all N trial fail] <= (e^(-1/n^2))^N
 
 So: if N=n^2, Pr[all fail] <= (e^(-1/n^2))^(n^2) = 1/e
+
     if N=n^2 * ln(n), Pr[all fail] <= (1/e)^ln n = 1/n
 
 Running time: polynomial in n and m but slow (r(n²*m))
+
 But: can get big speedups [to roughly O(n²)] with more ideas.
 
  # of minimum cuts 
@@ -105,6 +108,7 @@ But: can get big speedups [to roughly O(n²)] with more ideas.
 [a tree with n vertices has (n - 1) minimum cuts]
 
 Question: what's the largest number of min cuts that a graph with n vertices can have?
+
 Answer: (n 2) = (n * (n - 1)) / 2
 
 Pr[output = (Ai,Bi)] >= (2 / n * (n -1)) = 1 / (n 2)
@@ -134,9 +138,9 @@ strongly connected components - SCC
 - SCC of a directed graph G are the equivalence classes of the relation
 u~v <=> E path u -> v and E path v -> u in G
 - kosaraju's Two-Pass Algorithm:
- 1) Let Grev = G with all arcs reversed
- 2) run DFS-Loop on Grev (goal: compute "magical ordering" of nodes) - let f(v)="finishing time" of each v e V.
- 3) run DFS-Loop on G (goal: discover the SSCs one-by-one) - proceeding nodes in decreasing order of finishing times - SSCs = nodes with the same "leader"
+ 1. Let Grev = G with all arcs reversed
+ 1. run DFS-Loop on Grev (goal: compute "magical ordering" of nodes) - let f(v)="finishing time" of each v e V.
+ 1. run DFS-Loop on G (goal: discover the SSCs one-by-one) - proceeding nodes in decreasing order of finishing times - SSCs = nodes with the same "leader"
 
 Web Graph:
 - vertices = web pages
@@ -182,6 +186,7 @@ INSERT: add a new object to a heap. Running time: O(log n)
 EXTRACT-MIN: remove an object in heap with a minimum key value. . Running time: O(log n) [n = # of objects in the heap]
 
 Also: HEAPIFY (N batched Inserts in O(N) time ao inves de O(N log N))
+
       DELETE  (O(log N) time)
 
 - Canonical use of heaps: fast way to do repeated minimum computations
@@ -191,9 +196,11 @@ Example:
 SelectionSort: o(n*n) quadratic - repetitive scans
 
 #### HeadpSort:
-1) insert all n array elements into a heap
-2) Extract-Min to pluck at elements in sorted order
+1. insert all n array elements into a heap
+1. Extract-Min to pluck at elements in sorted order
+
 RunningTime = 2*N heap operations = O(N log N) time
+
 => optimal for a "comparison based" sorting algorithm]
 
 Application: Event Manager
@@ -207,13 +214,14 @@ Application: Speeding Up Dijkstra
 Array Implementation:
 
 => parent(i) = i/2 if i even, [i/2] if i odd (round down)
+
 => children(i) = 2*i and 2*i+1
 
 Implementation Insert (given key k):
 - Step 1: stick K at the end of last level.
 - Step 2: Bubble-Up (sift-up/heapify-up) k until heap property is restored (i.e., key of k's parent is <= k).
 
- # of levels = log2 N (N = # of items in heap)
+  # of levels = log2 N (N = # of items in heap)
 
 Implementation of Extract-Min (Bubble-Down)
 - Step 1: delete root.
@@ -245,9 +253,11 @@ Operations		 					Running Time
 - Insert and Deletions						  O(logN) => faster than sorted arrays        => also supported by Heap, Hash table
 
 O(log N) - balanced binary tree => height = log N
+
 O(Height) - unbalanced binary tree
 
 Exactly one node per key
+
 Most basic version each node has:
 - left child pointer: all key below this node has lower keys
 - right child pointer: all key below this node has higher keys
@@ -275,24 +285,28 @@ Idea for Insert/Delete: proceed as in a normal binary search tree, then recolor 
 ### Hash Tables
 
 Prupose: maintain a (possibly evolving) set of stuff. (transactions, people + associated data, IP address, etc.)
-Insert: Add a new record
-Delete: delete existing record
-Lookup: check for a particular record
+
+- Insert: Add a new record
+- Delete: delete existing record
+- Lookup: check for a particular record
 
 Amazing guarantee => all operations in O(1) time! (constant time)
 
 Collision => birsthday paradox (23 people -> 50% collision / same birsthday)
 
-Solution #1: chaining
-Solution #2: open addressing (one only object per bucket) => linear or using two hash functions: position + step
+- Solution #1: chaining
+- Solution #2: open addressing (one only object per bucket) => linear or using two hash functions: position + step
 
-- performance depends on the choice of hash function!
+* performance depends on the choice of hash function!
 
 Quick-and-Dirty Hash Functions:
+
 "hash code" -> "compression function"
 
 N = # of buckets
+
 How to choose N?
+
 1. choose N to be a prime (within constant factor of # of objects in table)
 1. not too close to a power of 2
 1. not too close to a power of 10
@@ -301,8 +315,8 @@ Load factor of a hash table: alpha
 
 alpha = # of objects in hash table / # of buckets in hash table
 
-Upshot #1: for good hit performance, need to control load
-Upshot #2: for good hit performance, need a good hash function i.e., spreads data evenly across buckets.
+* Upshot #1: for good hit performance, need to control load
+* Upshot #2: for good hit performance, need a good hash function i.e., spreads data evenly across buckets.
 
 Pathological Data in the Real World.
 

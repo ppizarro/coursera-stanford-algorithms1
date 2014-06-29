@@ -1,9 +1,100 @@
 # Coursera: Algorithms: Design and Analysis, Part 1 (Stanford)
 
- * Merge sort: O(n log(n))
- * Counting Inversions: O(n log(n))
- * Strassen's Subcubic Matrix Multiplication Algorithm: O(n²)
- * Algorithm for closest pair problem: O(n log(n))
+### Karatsura: multiplicar inteiros
+
+ 5678 x 1234
+
+ a b  x c d
+
+ a = 56
+
+ b = 78
+
+ c = 12
+
+ d = 34
+
+ 5678 x 1234 = ( a*10^(n/2) + b) * ( c*10^(n/2) + d)
+
+             = ac*10^n + ad*10^(n/2) + bc*10(n/2) + bd
+
+             = ac*10^n + (ad + bc)*10^(n/2) + bd
+
+ (ad + bc) = (a+b)*(c+d) - a*c - b*d
+
+Calcular:
+1. a*c
+1. b*d
+1. (a+b)*(c+d)
+1. (ad + bc) = (3) - (1) - (2)
+
+Resposta: (1)*10^n + (4)*10^n/2 + (2)
+
+Conclusão: com esse algoritmo faremos 3 multiplicações de (n/2) digitos
+
+### Merge sort: O(n log(n))
+
+* dividir para conquistar algoritmo - 6nlog(2)n + 6n - very flat quickly
+
+ log(2): #d times you divide by 2 until you get 1
+
+ Proof of claim: At each level j=0,1,2,..., log(2)n, there are 2^j subproblems, each of size n/(2^j)
+	Merger <= 6M
+
+ <= 2^j (# of level-j subproblems) x 6 (n/(2^j)) (subproblem size at level j) = 6n (independent of j !!!) 
+
+Total <= 6n *work per level) x (log(2)n + 1) (# of levels) = 6nlog(2)n + 6n
+
+- Identity function: f(n) = n
+- Quadratic function: f(n) = n^2
+
+Outros piores que o Merge Sort:
+- Selection Sort: n² (quadratic function)
+- Insertion Sort: 1/2 x n²
+- Bubble Sort: n²
+
+Asymptotic analysis: focus on running time for large input sizes n
+
+fast algorithm == worst-case running time grows slowly with input size
+
+T(n) = O(f(n)) <= Cf(n), for a C and n >= n0
+
+Claim: if T(n) = a(k)n^k + ... + a(1)n + a0 then T(n) = O(n^k)
+
+Proof: Choose n0 = 1 and c= |a(k)| + |a(k-1)| + ... + |a1|
+
+Need to show than qualquer n>=1, T(n) <= cn^k
+
+we have, for every n>=1,
+
+T(n) <= |a(k)|n^k + ... + |a(1)|n + |a(0)|
+
+T(n) <= |a(k)|n^k + ... + |a(1)|n^k + |a(0)|n^k
+
+T(n) <= cn^k
+
+* O (O Big Notation) = less than or equal to (upper bound)
+* Mega (Big omega notation) = greater than or equal to (lower bound)
+* Theta (Big theta notation) = equal to
+
+### Counting Inversions: O(n log(n))
+
+Counting Inversions = # A[i] > A[j], where i<j
+
+1, 2, 3, 4, 5, 6 = zero inversions
+
+6, 5, 4, 3, 2, 1 = 15 inversions => n(n-1)/2
+
+O(n) = n log n
+
+### Strassen's Subcubic Matrix Multiplication Algorithm: O(n²)
+
+O(n) = n^3
+O(n) = n^2 (strassen)
+
+### Algorithm for closest pair problem: O(n log(n))
+
+O(n) = n log n
 
 ### Recurrence Format: Master Method or Master Theorem
 

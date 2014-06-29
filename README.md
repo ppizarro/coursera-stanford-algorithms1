@@ -2,25 +2,22 @@
 
 ### Karatsura: multiplicar inteiros
 
+'''
  5678 x 1234
 
  a b  x c d
 
  a = 56
-
  b = 78
-
  c = 12
-
  d = 34
 
  5678 x 1234 = ( a*10^(n/2) + b) * ( c*10^(n/2) + d)
-
              = ac*10^n + ad*10^(n/2) + bc*10(n/2) + bd
-
              = ac*10^n + (ad + bc)*10^(n/2) + bd
 
  (ad + bc) = (a+b)*(c+d) - a*c - b*d
+'''
 
 Calcular:
 1. a*c
@@ -34,7 +31,7 @@ Conclusão: com esse algoritmo faremos 3 multiplicações de (n/2) digitos
 
 ### Merge sort: O(n log(n))
 
-* dividir para conquistar algoritmo - 6nlog(2)n + 6n - very flat quickly
+dividir para conquistar algoritmo - 2(6nlog)n + 6n - very flat quickly
 
  log(2): #d times you divide by 2 until you get 1
 
@@ -90,6 +87,7 @@ O(n) = n log n
 ### Strassen's Subcubic Matrix Multiplication Algorithm: O(n²)
 
 O(n) = n^3
+
 O(n) = n^2 (strassen)
 
 ### Algorithm for closest pair problem: O(n log(n))

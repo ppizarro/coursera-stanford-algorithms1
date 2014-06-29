@@ -95,9 +95,9 @@ Probabilty[all N trials fail] <= (1 - 1/n^2)^N
 
 Pr[all N trial fail] <= (e^(-1/n^2))^N
 
-So: if N=n^2, Pr[all fail] <= (e^(-1/n^2))^(n^2) = 1/e
-
-    if N=n^2 * ln(n), Pr[all fail] <= (1/e)^ln n = 1/n
+So:
+ - if N=n^2, Pr[all fail] <= (e^(-1/n^2))^(n^2) = 1/e
+ - if N=n^2 * ln(n), Pr[all fail] <= (1/e)^ln n = 1/n
 
 Running time: polynomial in n and m but slow (r(n²*m))
 
@@ -179,17 +179,16 @@ Main loop cri'd
 
 ### Heap Data Structure
 
-- a container for objects that have keys. Ex.: employer records, network edges, events, etc.
+ a container for objects that have keys. Ex.: employer records, network edges, events, etc.
 
-INSERT: add a new object to a heap. Running time: O(log n)
+- INSERT: add a new object to a heap. Running time: O(log n)
+- EXTRACT-MIN: remove an object in heap with a minimum key value. . Running time: O(log n) [n = # of objects in the heap]
 
-EXTRACT-MIN: remove an object in heap with a minimum key value. . Running time: O(log n) [n = # of objects in the heap]
+Also:
+- HEAPIFY (N batched Inserts in O(N) time ao inves de O(N log N))
+- DELETE  (O(log N) time)
 
-Also: HEAPIFY (N batched Inserts in O(N) time ao inves de O(N log N))
-
-      DELETE  (O(log N) time)
-
-- Canonical use of heaps: fast way to do repeated minimum computations
+Canonical use of heaps: fast way to do repeated minimum computations
 
 Example:
 
@@ -212,16 +211,14 @@ Application: Median Maintanence
 Application: Speeding Up Dijkstra
 
 Array Implementation:
-
-=> parent(i) = i/2 if i even, [i/2] if i odd (round down)
-
-=> children(i) = 2*i and 2*i+1
+- parent(i) = i/2 if i even, [i/2] if i odd (round down)
+- children(i) = 2*i and 2*i+1
 
 Implementation Insert (given key k):
 - Step 1: stick K at the end of last level.
 - Step 2: Bubble-Up (sift-up/heapify-up) k until heap property is restored (i.e., key of k's parent is <= k).
 
-  # of levels = log2 N (N = # of items in heap)
+number of levels = log2 N (N = # of items in heap)
 
 Implementation of Extract-Min (Bubble-Down)
 - Step 1: delete root.
@@ -268,12 +265,12 @@ Most basic version each node has:
 
 1. each node red or black (bit information)
 1. root is black
-1. no two reds in a row [red node => only black childrens]
+1. no two reds in a row (red node => only black childrens)
 1. every root-NULL path (unsuccessful search) has same number of black nodes
 
-- left and right rotations
+left and right rotations
 
-- Insertion in a Red-Black Tree:
+Insertion in a Red-Black Tree:
 
 Idea for Insert/Delete: proceed as in a normal binary search tree, then recolor and/or perform rotations until invariants are restored;
 

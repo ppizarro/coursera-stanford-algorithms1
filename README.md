@@ -223,7 +223,7 @@ topologic ordering
 - G has directed cycle => no topological ordering.
 - every directed acycle graph has a sink vertex.
 
-strongly connected components - SCC
+### strongly connected components - SCC
 - SCC of a directed graph G are the equivalence classes of the relation
 u~v <=> E path u -> v and E path v -> u in G
 - kosaraju's Two-Pass Algorithm:

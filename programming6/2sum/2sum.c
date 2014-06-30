@@ -17,14 +17,14 @@
 int twosum_hash (GHashTable * hash, int target)
 {
     GHashTableIter iter;
-    int x;
+    int x = 0;
 
     g_hash_table_iter_init (&iter, hash);
     while (g_hash_table_iter_next (&iter, (gpointer*)&x, NULL)) {
         int y = target - x;
         if (x != y && g_hash_table_contains (hash, GINT_TO_POINTER(y))) {
             //targets[target + 10000] = 1;
-	    //printf ("target[%i] x[%i] y[%i] t[%i]\n", target, x, y, target + 10000);
+            //printf ("target[%i] x[%i] y[%i] t[%i]\n", target, x, y, target + 10000);
             return TRUE;
         }
     }

@@ -40,7 +40,7 @@ static void parse_line (char * line, Vertex ** vertices, int max_size, int * num
 
     for (;;) {
         token = strtok_r(NULL, DELIMIT, &saveptr);
-	    if (token == NULL) break;
+        if (token == NULL) break;
 
         long id;
         long distance;

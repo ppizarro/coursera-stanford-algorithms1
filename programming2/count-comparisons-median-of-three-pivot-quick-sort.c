@@ -71,7 +71,7 @@ inline int find_pivot_median_of_three(int* array, int length)
         return first_pos;
     } else if (middle <= last) {
         // middle - last - first
-	return last_pos;
+        return last_pos;
     }
     // last - middle - first
     return middle_pos;

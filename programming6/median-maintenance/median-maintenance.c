@@ -21,10 +21,6 @@
  */
 static long median_maintenance(Heap * heap_low, Heap * heap_high, long x)
 {
-    // Heap is a MIN-heap, so we need 
-    // to revert elements in heap_low
-    // (which should be a MAX-heap).
-
     if (heap_size(heap_low) == 0) {
         HEAP_PUSH(heap_low, x);
         return x;
@@ -37,7 +33,7 @@ static long median_maintenance(Heap * heap_low, Heap * heap_high, long x)
         }
     } else {
         HEAP_PUSH(heap_low, x);
-        if (heap_size(heap_low) - heap_size(heap_high) > 1) {
+        if (heap_size(heap_low) > heap_size(heap_high) + 1) {
             HEAP_PUSH(heap_high, HEAP_POP(heap_low));
         }
     }
@@ -45,6 +41,10 @@ static long median_maintenance(Heap * heap_low, Heap * heap_high, long x)
     return HEAP_PEEK(heap_low, 0);
 }
 
+/* Heap is a MIN-heap, so we need 
+ * to revert elements in heap_low
+ * (which should be a MAX-heap).
+ */
 static long heap_max_key (void * data)
 {
     return -POINTER_TO_INT(data);

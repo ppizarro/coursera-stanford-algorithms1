@@ -27,7 +27,7 @@ static void parse_line (char * line)
 
     for (;;) {
         token = strtok_r(NULL, DELIMIT, &saveptr);
-	    if (token == NULL)
+        if (token == NULL)
             break;
         vertex_element * right = vertex_make (atoi(token));
 

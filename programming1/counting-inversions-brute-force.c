@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     for (; i<num_ints; i++) {
         for (j=i+1; j<num_ints; j++) {
             if (integers[i] > integers[j]) 
-		inversions++;
+                inversions++;
         }
     }
 
